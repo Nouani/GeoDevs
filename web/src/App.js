@@ -8,6 +8,8 @@ import './Sidebar.css';
 import './Main.css'
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGitHubUsername] = useState('');
   const [techs, setTechs] = useState('');
   const [latitude, setLatitude] = useState('');
@@ -29,9 +31,30 @@ function App() {
     );
   }, [])
 
-  async function handleAddDev(e){
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
+  async function handleAddDev(e) {
     e.preventDefault();
 
+    const response = await api.post('/devs', {
+      github_username,
+      techs,
+      latitude,
+      longitude
+    })
+
+    setGitHubUsername('');
+    setTechs('');
+
+    setDevs([...devs, response.data]);
+    console.log(response.data);
   }
 
   return (
@@ -88,60 +111,29 @@ function App() {
               />
             </div>
           </div>
-          
+
           <button type="submit">Salvar</button>
         </form>
       </aside>
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/49238044?v=4" alt="Nouani"/>
-              <div className="user-info">
-                <strong>Nouani</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-              <p>IT student/monitor at Technical High School of Campinas - Unicamp</p>
-              <a href="https://github.com/Nouani">Acessar perfil no GitHub</a>
-            </header>
-          </li>
 
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/49238044?v=4" alt="Nouani"/>
-              <div className="user-info">
-                <strong>Nouani</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-              <p>IT student/monitor at Technical High School of Campinas - Unicamp</p>
-              <a href="https://github.com/Nouani">Acessar perfil no GitHub</a>
-            </header>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/49238044?v=4" alt="Nouani"/>
-              <div className="user-info">
-                <strong>Nouani</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-              <p>IT student/monitor at Technical High School of Campinas - Unicamp</p>
-              <a href="https://github.com/Nouani">Acessar perfil no GitHub</a>
-            </header>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/49238044?v=4" alt="Nouani"/>
-              <div className="user-info">
-                <strong>Nouani</strong>
-                <span>ReactJS, React Native, NodeJS</span>
-              </div>
-              <p>IT student/monitor at Technical High School of Campinas - Unicamp</p>
-              <a href="https://github.com/Nouani">Acessar perfil no GitHub</a>
-            </header>
-          </li>
+          {devs.map(dev => {
+            return (
+              <li className="dev-item" key={dev._id}>
+                <header>
+                  <img src={dev.avatar_url} alt={dev.name} />
+                  <div className="user-info">
+                    <strong>{dev.name}</strong>
+                    <span>{dev.techs.join(', ')}</span>
+                  </div>
+                  <p>{dev.bio}</p>
+                  <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no GitHub</a>
+                </header>
+              </li>
+            )
+          })}
         </ul>
       </main>
     </div>
