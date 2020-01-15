@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+import api from './services/api';
+
 import './global.css';
 import './App.css';
 import './Sidebar.css';
 import './Main.css'
 
 function App() {
+  const [github_username, setGitHubUsername] = useState('');
+  const [techs, setTechs] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
 
@@ -25,17 +29,24 @@ function App() {
     );
   }, [])
 
+  async function handleAddDev(e){
+    e.preventDefault();
+
+  }
+
   return (
     <div id="app">
       <aside>
         <strong>Cadastrar</strong>
-        <form action="">
+        <form onSubmit={handleAddDev}>
           <div className="input-block">
             <label htmlFor="github_username">Usuário do GitHub</label>
             <input
               type="text"
               name="github_username"
               id="github_username"
+              value={github_username}
+              onChange={e => setGitHubUsername(e.target.value)}
               required
             />
           </div>
@@ -46,6 +57,8 @@ function App() {
               type="text"
               name="techs"
               id="techs"
+              value={techs}
+              onChange={e => setTechs(e.target.value)}
               required
             />
           </div>
