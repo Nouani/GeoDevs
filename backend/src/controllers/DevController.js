@@ -10,6 +10,12 @@ module.exports = {
         res.json(response);
     },
 
+    async update(req, res){
+        const response = await Dev.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        res.json(response);
+    },
+
     async store(req, res) {
         const { github_username, techs, latitude, longitude } = req.body;
 
@@ -39,5 +45,11 @@ module.exports = {
             })
         }
         res.json(dev);
+    },
+
+    async destroy(req, res){
+        const response = await Dev.findByIdAndDelete(req.params.id);
+
+        res.json(response);
     }
 }
