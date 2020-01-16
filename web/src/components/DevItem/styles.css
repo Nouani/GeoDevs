@@ -16,10 +16,21 @@ li.dev-item header img {
     width: 54px;
     height: 52px;
     border-radius: 50%;
+    grid-area: img;
 }
 
-li.dev-item header .user-info {
+li.dev-item header .inside-block .user-info {
     margin-left: 10px;
+}
+
+.inside-block {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas: "img user-info icons";
+}
+  
+.user-info {
+grid-area: user-info;
 }
 
 .user-info strong {
@@ -32,6 +43,33 @@ li.dev-item header .user-info {
     font-size: 13px;
     color: #999;
     margin-top: 2px;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    grid-area: icons;
+}
+
+.icons button { /* Edit and remove buttons */
+    border: 0;
+    border-radius: 50%;
+    color: #666;
+    width: 30px;
+    height: 30px;
+    margin: 0 2px;
+    transition: background 0.1s;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background-color: #5A2EA6;
+    color: #FFF;
+  }
+  
+.remove-button:hover {
+    background-color: #d63031;
+    color: #FFF;
 }
 
 li.dev-item p {
