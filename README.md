@@ -31,7 +31,7 @@ During the Omnistack 10.0 Week promoted by Rocketseat, we created a web applicat
 - Node.js
 - WebSockets
 
-#### - [Operation demo video]()
+#### - [Operation demo video](https://www.youtube.com/watch?v=H8WObKPIl_A)
 
 ---
 
@@ -82,9 +82,9 @@ In the mobile folder:
 ---
 ## References
 
-#### - Rocketseat: https://rocketseat.com.br/
-#### - Facebook React.js: https://pt-br.reactjs.org/
-#### - Facebook React-Native: https://facebook.github.io/react-native/
+- Rocketseat: https://rocketseat.com.br/
+- Facebook React.js: https://pt-br.reactjs.org/
+- Facebook React-Native: https://facebook.github.io/react-native/
 
 ---
 
@@ -92,5 +92,3 @@ In the mobile folder:
 
 - Twitter - [@sanches_coo](https://twitter.com/sanches_coo)
 - LinkedIn - [Nouani Sanches](https://www.linkedin.com/in/nouani-sanches-a8b39419b/m)
-
-[Back To The Top](#read-me-template)
