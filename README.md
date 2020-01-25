@@ -1,4 +1,3 @@
-<br />
 <p align="center">
 
   <img alt="GeoDevs-Logo" src="https://user-images.githubusercontent.com/49238044/73127155-05529380-3f9b-11ea-9fa7-398fcc214d61.png"        width="250px" />
